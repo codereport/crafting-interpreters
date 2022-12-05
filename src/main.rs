@@ -24,11 +24,9 @@ fn run_file(path: &String) {
 
 fn main() {
     let args: Vec<String> = env::args().collect();
-    if args.len() > 2 {
-        println!("Usage: lox [script]");
-    } else if args.len() == 2 {
-        run_file(&args[1]);
-    } else {
-        run_prompt();
+    match args.len() {
+        x if x > 2 => println!("Usage: lox [script]"),
+        2 => run_file(&args[1]),
+        _ => run_prompt(),
     }
 }
