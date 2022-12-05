@@ -2,24 +2,31 @@ use std::env;
 use std::io;
 use std::io::Write;
 
+fn run_file(path: &String) {
+    // TODO
+    println!("{path}\n");
+}
+
 fn run_prompt() {
     loop {
         print!("> ");
         io::stdout().flush().unwrap();
-        let mut buffer = String::new();
-        io::stdin().read_line(&mut buffer).expect("Valid input");
-        if buffer.len() == 1 {
+        let mut line = String::new();
+        io::stdin().read_line(&mut line).expect("Valid input");
+        if line.len() == 1 {
             println!("exit");
             break;
         } else {
-            println!("{buffer}")
+            run(&line);
         }
     }
 }
 
-fn run_file(path: &String) {
-    // TODO
-    println!("{path}\n");
+fn run(source: &String) {
+    let tokens = vec![source];
+    for token in tokens {
+        println!("{token}");
+    }
 }
 
 fn main() {
